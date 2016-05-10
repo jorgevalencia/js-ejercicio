@@ -1,5 +1,5 @@
 //Funcionalidad menu desktop
-function desktop(e){
+function desktop(){
    //Limpiar lo que traiga de mobile
    $('#mobile-button').hide()
    $('#mobile-close').hide()
@@ -8,12 +8,12 @@ function desktop(e){
    //Funcionalidad del menu
    $('.menu-container li').hover(function() {
       $(this).find('.sub-menu').fadeToggle();
-      e.preventDefault()
+
    });
 }
 
 //Funcionalidad menu mobile
-function mobile(e){
+function mobile(){
    //Limpiar lo que traiga de destop
    $('#mobile-button').show()
    $(".menu-container li").unbind('mouseenter mouseleave')
@@ -21,7 +21,7 @@ function mobile(e){
    $('.menu-container li').click(function() {
       $(this).siblings().find('.sub-menu:visible').hide()
       $(this).find('.sub-menu').fadeToggle()
-      e.preventDefault()
+
    });
 }
 
@@ -37,7 +37,6 @@ function updateContainer() {
    }
 }
 
-//
 $(window).resize(function() {
    //Cada que se haga rezise llamar funcion responsive
    updateContainer();
