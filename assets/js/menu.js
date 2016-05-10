@@ -6,9 +6,9 @@ function desktop(){
    $('.menu-container li .sub-menu').hide()
    $(".menu-container li").unbind('click')
    //Funcionalidad del menu
-   $('.menu-container li').hover(function() {
+   $('.menu-container li').hover(function(e) {
       $(this).find('.sub-menu').fadeToggle();
-
+      e.preventDefault()
    });
 }
 
@@ -18,10 +18,10 @@ function mobile(){
    $('#mobile-button').show()
    $(".menu-container li").unbind('mouseenter mouseleave')
    //Funcionalidad del menu
-   $('.menu-container li').click(function() {
+   $('.menu-container li').click(function(e) {
       $(this).siblings().find('.sub-menu:visible').hide()
-      $(this).find('.sub-menu').fadeToggle()
-
+      $(this).find('.sub-menu').toggle()
+      e.preventDefault()
    });
 }
 
