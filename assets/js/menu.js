@@ -1,36 +1,58 @@
+//Funcionalidad menu desktop
+function desktop(e){
+   //Limpiar lo que traiga de mobile
+   $('#mobile-button').hide()
+   $('#mobile-close').hide()
+   $('.menu-container li .sub-menu').hide()
+   $(".menu-container li").unbind('click')
+   //Funcionalidad del menu
+   $('.menu-container li').hover(function() {
+      $(this).find('.sub-menu').fadeToggle();
+      e.preventDefault()
+   });
+}
+
+//Funcionalidad menu mobile
+function mobile(e){
+   //Limpiar lo que traiga de destop
+   $('#mobile-button').show()
+   $(".menu-container li").unbind('mouseenter mouseleave')
+   //Funcionalidad del menu
+   $('.menu-container li').click(function() {
+      $(this).siblings().find('.sub-menu:visible').hide()
+      $(this).find('.sub-menu').fadeToggle()
+      e.preventDefault()
+   });
+}
+
+//Funcionalidad responsive
+function updateContainer() {
+   var width = $(window).width();
+   if ( width > 990) {
+      //Si es más grandeo que 990px llamar function desktop
+      desktop()
+   } else {
+      //De lo contrario llamar function mobile
+      mobile()
+   }
+}
+
+//
+$(window).resize(function() {
+   //Cada que se haga rezise llamar funcion responsive
+   updateContainer();
+});
+
 $(document).ready(function(){
 
-   function updateContainer() {
-      // menu mobile  - Desplegear submenu
-      if ($(window).width() < 990) {
-         $('#menu-container li').click(function(e) {
-            $(this).find('.sub-menu').fadeToggle();
-            $(this).siblings().find('.sub-menu:visible').hide();
-         });
-      // menu desktop - Desplegear submenu
-      } else {
-         $('#menu-container li').hover(function(e) {
-            $(this).find('.sub-menu').fadeToggle();
-         });
-      }
-   }
-
+   //Llamar función de responsive
    updateContainer();
-   
-   $(window).resize(function() {
-      updateContainer();
-   });
 
    // Resaltar <li> clickeado
    $('#menu-container a').click(function(e) {
        $('#menu-container li').removeClass('current-menu-item');
        $(this).parent().addClass('current-menu-item');
    });
-
-   // Desplegear submenu
-   // $('#menu-container li').hover(function(e) {
-   //    $(this).find('.sub-menu').fadeToggle();
-   // });
 
    // Abrir menu mobile
    $('#mobile-button').click(function(e) {
@@ -45,21 +67,5 @@ $(document).ready(function(){
       $(this).hide();
       $('#mobile-button').show();
    })
-
-   // // menu mobile  - Desplegear submenu
-   // if ($(window).width() < 990) {
-   //    $('#menu-container li').click(function(e) {
-   //       $(this).find('.sub-menu').fadeToggle();
-   //       $(this).siblings().find('.sub-menu:visible').hide();
-   //    });
-   // // menu desktop - Desplegear submenu
-   // } else {
-   //    $('#menu-container li').hover(function(e) {
-   //       $(this).find('.sub-menu').fadeToggle();
-   //    });
-   // }
-
-
-
 
 });

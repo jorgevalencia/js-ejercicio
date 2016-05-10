@@ -1,36 +1,15 @@
 $(document).ready(function(){
 
-   function updateContainer() {
-      // menu mobile  - Desplegear submenu
-      if ($(window).width() < 990) {
-         $('#menu-container li').click(function(e) {
-            $(this).find('.sub-menu').fadeToggle();
-            $(this).siblings().find('.sub-menu:visible').hide();
-         });
-      // menu desktop - Desplegear submenu
-      } else {
-         $('#menu-container li').hover(function(e) {
-            $(this).find('.sub-menu').fadeToggle();
-         });
-      }
-   }
-
-   updateContainer();
-   
-   $(window).resize(function() {
-      updateContainer();
-   });
-
    // Resaltar <li> clickeado
    $('#menu-container a').click(function(e) {
        $('#menu-container li').removeClass('current-menu-item');
        $(this).parent().addClass('current-menu-item');
    });
 
-   // Desplegear submenu
-   // $('#menu-container li').hover(function(e) {
-   //    $(this).find('.sub-menu').fadeToggle();
-   // });
+   //Desplegear submenu
+   $('#menu-container li').hover(function(e) {
+      $(this).find('.sub-menu').fadeToggle();
+   });
 
    // Abrir menu mobile
    $('#mobile-button').click(function(e) {
@@ -58,8 +37,6 @@ $(document).ready(function(){
    //       $(this).find('.sub-menu').fadeToggle();
    //    });
    // }
-
-
 
 
 });
